@@ -20,6 +20,13 @@ const Gallery = () => {
       price: "A$497", 
       description: "Full-service launch with personal Miguel consultation",
       status: "Limited"
+    },
+    {
+      title: "Legendary Funnel",
+      price: "A$197",
+      description: "Miguel's legendary funnel system for empire conversions",
+      status: "Available",
+      url: "https://preview--miguel-s-legendary-funnel.lovable.app/"
     }
   ];
 
@@ -57,12 +64,12 @@ const Gallery = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12">
           {projects.map((project, index) => (
             <div key={index} className="bg-velvet-gradient rounded-xl p-8 shadow-velvet border border-border">
               <div className="text-center">
                 <div className="text-2xl mb-4 text-primary">
-                  {index === 0 ? "💎" : index === 1 ? "👑" : "🏰"}
+                  {index === 0 ? "💎" : index === 1 ? "👑" : index === 2 ? "🏰" : "⚡"}
                 </div>
                 <h3 className="font-playfair text-xl font-bold mb-2 text-foreground">
                   {project.title}
@@ -74,14 +81,14 @@ const Gallery = () => {
                   {project.price}
                 </div>
                 <Button 
-                  variant={index === 0 ? "velvet" : "outline"} 
+                  variant={(index === 0 || index === 3) ? "velvet" : "outline"} 
                   className="w-full"
                   disabled={project.status !== "Available"}
-                  asChild={index === 0}
+                  asChild={project.status === "Available"}
                 >
-                  {index === 0 ? (
-                    <a href="/">
-                      Begin Ceremony
+                  {project.status === "Available" ? (
+                    <a href={project.url || "/"} target={project.url ? "_blank" : "_self"}>
+                      {index === 0 ? "Begin Ceremony" : "Enter Funnel"}
                     </a>
                   ) : (
                     <>
