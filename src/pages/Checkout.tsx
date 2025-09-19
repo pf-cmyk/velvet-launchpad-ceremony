@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Check } from "lucide-react";
+import PaymentForm from "@/components/PaymentForm";
 
 const Checkout = () => {
   return (
@@ -66,29 +67,9 @@ const Checkout = () => {
             </div>
           </Card>
 
-          {/* Payment Notice */}
+          {/* Payment Form */}
           <div className="space-y-8">
-            <Card className="p-8 border-border">
-              <div className="text-center">
-                <div className="text-4xl mb-4 text-primary">🔒</div>
-                <h2 className="font-playfair text-2xl font-bold mb-4 text-foreground">
-                  Secure Payment Processing
-                </h2>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  To complete your velvet ceremony and process payments securely, 
-                  this platform needs to be connected to a payment processor.
-                </p>
-                <div className="bg-muted rounded-lg p-6 text-left">
-                  <h3 className="font-semibold text-foreground mb-3">Next Steps:</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Connect Stripe payment processing</li>
-                    <li>• Set up secure customer data handling</li>
-                    <li>• Configure automated product delivery</li>
-                    <li>• Enable order confirmation emails</li>
-                  </ul>
-                </div>
-              </div>
-            </Card>
+            <PaymentForm />
 
             {/* Testimonial */}
             <Card className="p-6 border-border bg-card">
