@@ -1,9 +1,52 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ArrowLeft, Check } from "lucide-react";
-import PaymentForm from "@/components/PaymentForm";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Checkout = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCheckout = async () => {
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address to continue with the velvet ceremony.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: { guestEmail: email }
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data?.url) {
+        // Open Stripe checkout in new tab
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      console.error('Payment error:', error);
+      toast({
+        title: "Payment Error",
+        description: "Failed to initiate payment. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -69,7 +112,45 @@ const Checkout = () => {
 
           {/* Payment Form */}
           <div className="space-y-8">
-            <PaymentForm />
+            {/* Email Input */}
+            <Card className="p-8 border-border">
+              <h2 className="font-playfair text-2xl font-bold mb-6 text-foreground">
+                Enter the Velvet Ceremony
+              </h2>
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-foreground font-semibold">
+                    Royal Email Address
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your@empire.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="bg-background border-border"
+                    required
+                  />
+                  <p className="text-sm text-muted-foreground">
+                    Your email will receive the velvet template access and setup instructions.
+                  </p>
+                </div>
+
+                <Button 
+                  variant="velvet" 
+                  size="lg" 
+                  className="w-full text-lg px-8 py-4 font-playfair"
+                  onClick={handleCheckout}
+                  disabled={loading}
+                >
+                  {loading ? "Preparing Ceremony..." : "🧿 Complete Velvet Purchase - A$97"}
+                </Button>
+
+                <p className="text-xs text-muted-foreground text-center">
+                  Secure payment processed by Stripe. You will be redirected to complete your purchase.
+                </p>
+              </div>
+            </Card>
 
             {/* Testimonial */}
             <Card className="p-6 border-border bg-card">
