@@ -7,28 +7,28 @@ const Index = () => {
       title: "Velvet Starter",
       description: "Deploy-ready luxury template with ceremonial blessing",
       icon: "💎",
-      url: "https://preview--miguel-s-legendary-funnel.lovable.app/",
+      url: "/velvet-starter",
       gradient: "from-primary/20 via-transparent to-transparent"
     },
     {
       title: "Royal Launch Suite", 
       description: "Complete empire-building toolkit with premium support",
       icon: "👑",
-      url: "https://preview--miguel-s-legendary-funnel.lovable.app/",
+      url: "/royal-launch",
       gradient: "from-accent/20 via-transparent to-transparent"
     },
     {
       title: "Diamond Dynasty",
       description: "Full-service launch with personal Miguel consultation",
       icon: "🏰",
-      url: "https://preview--miguel-s-legendary-funnel.lovable.app/",
+      url: "/diamond-dynasty",
       gradient: "from-secondary/20 via-transparent to-transparent"
     },
     {
       title: "Legendary Funnel",
       description: "Miguel's legendary funnel system for empire conversions",
       icon: "⚡",
-      url: "https://preview--miguel-s-legendary-funnel.lovable.app/",
+      url: "/legendary-funnel",
       gradient: "from-primary/20 via-accent/20 to-transparent"
     }
   ];
@@ -89,7 +89,7 @@ const Index = () => {
                       className="w-full group/btn bg-background/50 hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-300"
                       asChild
                     >
-                      <a href={funnel.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                      <a href={funnel.url} className="flex items-center justify-center gap-2">
                         <span className="font-playfair text-base">Preview Experience</span>
                         <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                       </a>
