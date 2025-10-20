@@ -36,26 +36,14 @@ const Index = () => {
           <li>Setup guide</li>
         </ul>
         
-        {/* Navigation Buttons */}
-        <div className="space-y-4 mb-4">
-          <Button 
-            variant="velvet" 
-            size="lg" 
-            className="text-lg px-8 py-4 font-playfair w-full"
-            asChild
-          >
-            <a href="/checkout">🧿 Begin the Velvet Ceremony</a>
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="text-lg px-8 py-4 font-playfair w-full"
-            asChild
-          >
-            <a href="/">🏠 Return to Homepage</a>
-          </Button>
-        </div>
+        {/* CTA Button */}
+        <Button 
+          variant="velvet" 
+          size="lg" 
+          className="text-lg px-8 py-4 mb-4 font-playfair"
+        >
+          🧿 Begin the Velvet Ceremony
+        </Button>
         
         {/* Sub-quote */}
         <div className="text-sm italic text-muted-foreground mb-8 font-playfair">

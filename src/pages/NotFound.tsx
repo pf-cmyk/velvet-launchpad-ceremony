@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -10,20 +9,13 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-8">
-      <div className="text-center max-w-md">
-        <div className="text-6xl mb-6 text-primary">💎</div>
-        <h1 className="font-playfair text-4xl font-bold mb-4 text-foreground">404</h1>
-        <p className="text-xl text-muted-foreground mb-2">Lost in the velvet void</p>
-        <p className="text-muted-foreground mb-8">This path leads nowhere in Miguel's empire.</p>
-        <div className="space-y-3">
-          <Button asChild variant="velvet" className="w-full">
-            <a href="/">Return to Velvet Starter</a>
-          </Button>
-          <Button asChild variant="outline" className="w-full">
-            <a href="/gallery">Browse Miguel's Gallery</a>
-          </Button>
-        </div>
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <div className="text-center">
+        <h1 className="mb-4 text-4xl font-bold">404</h1>
+        <p className="mb-4 text-xl text-gray-600">Oops! Page not found</p>
+        <a href="/" className="text-blue-500 underline hover:text-blue-700">
+          Return to Home
+        </a>
       </div>
     </div>
   );
